@@ -23,10 +23,8 @@ export default function Home({ results }) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    "https://swapi.dev/api/people/?search=luke&skywalker"
-  );
+export async function getServerSideProps(character) {
+  const res = await fetch(`https://swapi.dev/api/people/?search=${character}`);
   const data = await res.json();
   console.log(data);
 
