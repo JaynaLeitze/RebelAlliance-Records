@@ -12,6 +12,11 @@ export const SwapiProvider = (props) => {
       .then(setCharacter);
   };
 
+  // const getFilm = (filmURL) => {
+  //   return fetch(`${filmURL}`)
+  //   .then((res) => res.json())
+  //   }
+
   return (
     <SwapiContext.Provider
       value={{
