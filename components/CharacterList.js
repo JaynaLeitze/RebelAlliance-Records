@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { CharacterSearch } from "../components/CharacterSearch";
-import { SwapiContext } from "../components/SwapiProvider";
-import { Character } from "../components/Character";
+import { CharacterSearch } from "./CharacterSearch";
+import { SwapiContext } from "./SwapiProvider";
+import { Character } from "./Character";
 
 export const CharacterList = (props) => {
   const {
@@ -12,17 +12,21 @@ export const CharacterList = (props) => {
     getCharacters,
   } = useContext(SwapiContext);
 
-  const characters = searchTerms;
+  const char = searchTerms;
 
   useEffect(() => {
-    getCharacters(characters);
+    getCharacters(char);
   });
 
   return (
     <>
       <CharacterSearch {...props} />
 
-      {characters !== null ? character.map(<Character {...props} />) : ""}
+      {/* {char !== ""
+        ? character.map(() => {
+            return <Character {...props} />;
+          })
+        : ""} */}
     </>
   );
 };
