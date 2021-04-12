@@ -1,38 +1,29 @@
+import React, { useContext } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import { CharacterList } from "../components/CharacterList";
+// import { SwapiContext } from "../components/SwapiProvider";
 
-export default function Home({ results }) {
-  console.log(results);
+export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
         <title>Rebel Alliance Database</title>
       </Head>
       <h1>Rebel Alliance Records</h1>
-      {results.results.map((c) => (
-        <div>
-          <h3>Name: {c.name} </h3>
-          <p> Height: {c.height} </p>
-          <p> Mass: {c.mass} </p>
-          <p> Hair Color: {c.hair_color}</p>
-          <p> Birth Year: {c.birth_year}</p>
-          <p> Species: {c.species} </p>
-        </div>
-      ))}
+      <CharacterList {...props} />
     </div>
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    "https://swapi.dev/api/people/?search=luke&skywalker"
-  );
-  const data = await res.json();
-  console.log(data);
+// export async function getServerSideProps(char) {
+//   const { getCharacters, character } = useContext(SwapiContext);
+//   const res = getCharacters(char);
+//   const data = character;
 
-  return {
-    props: {
-      results: data,
-    },
-  };
-}
+//   return {
+//     props: {
+//       results: data,
+//     },
+//   };
+// }

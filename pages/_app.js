@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import React from "react";
+import { SwapiProvider, SwapiContext } from "../components/SwapiProvider";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <SwapiProvider>
+      <Component {...pageProps} />
+    </SwapiProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
