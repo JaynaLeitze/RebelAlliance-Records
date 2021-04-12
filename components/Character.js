@@ -32,19 +32,18 @@ export const Character = ({ person }) => {
       <p> Hair Color: {person.hair_color}</p>
       <p> Birth Year: {person.birth_year}</p>
       <p> Species: {person.species} </p>
-      <p>
-        Films:
-        {film.map((f) => {
-          return (
-            <p>
-              {f.title}
-              {f.episode_id}
-              {f.director}
-              {f.release_date}
-            </p>
-          );
-        })}
-      </p>
+
+      <h3> Films:</h3>
+      {film.map((f) => {
+        return (
+          <div>
+            <p> Title:{f.title}</p>
+            <p>Episode:{f.episode_id}</p>
+            <p> Director: {f.director}</p>
+            <p> Release Date: {f.release_date}</p>
+          </div>
+        );
+      })}
     </div>
   );
 };
