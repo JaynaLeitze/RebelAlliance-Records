@@ -1,12 +1,12 @@
 import React from "react";
 
-export const Character = ({ character }) => (
+export const Character = ({ person }) => (
   <div>
-    <h3>Name: {character.name} </h3>
-    <p> Height: {character.height} </p>
-    <p> Mass: {character.mass} </p>
-    <p> Hair Color: {character.hair_color}</p>
-    <p> Birth Year: {character.birth_year}</p>
-    <p> Species: {character.species} </p>
+    <h3>Name: {person.properties.name} </h3>
+    <p> Height: {person.properties.height} </p>
+    <p> Mass: {person.properties.mass} </p>
+    <p> Hair Color: {person.properties.hair_color}</p>
+    <p> Birth Year: {person.properties.birth_year}</p>
+    <p> Species: {person.properties.species} </p>
   </div>
 );

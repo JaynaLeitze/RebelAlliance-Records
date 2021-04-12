@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
 import { SwapiContext } from "./SwapiProvider";
-// import SearchField from "react-search-field";
+import SearchField from "react-search-field";
 
 export const CharacterSearch = (props) => {
-  const { setTerms } = useContext(SwapiContext);
+  const { setTerms, getCharacters, character, searchTerms } = useContext(
+    SwapiContext
+  );
 
   return (
     <div className="characterSearch">
-      <input
+      <SearchField
         type="text"
-        className="input--wide"
-        onChange={(keyEvent) => setTerms(keyEvent.target.value)}
+        onEnter={(e) => getCharacters(e)}
+        // onSearchClick={setTerms}
         placeholder="Explore the galaxy "
       />
     </div>

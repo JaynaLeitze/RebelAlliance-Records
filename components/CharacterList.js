@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CharacterSearch } from "./CharacterSearch";
 import { SwapiContext } from "./SwapiProvider";
 import { Character } from "./Character";
+import SearchField from "react-search-field";
 
 export const CharacterList = (props) => {
   const {
@@ -11,22 +12,28 @@ export const CharacterList = (props) => {
     setTerms,
     getCharacters,
   } = useContext(SwapiContext);
+  const [filtered, setFiltered] = useState([]);
 
-  const char = searchTerms;
-
-  useEffect(() => {
-    getCharacters(char);
-  });
+  useEffect;
 
   return (
     <>
-      <CharacterSearch {...props} />
+      <div className="characterSearch">
+        <SearchField
+          type="text"
+          onEnter={(e) =>
+            getCharacters(e).then((char) => setCharacter(char.result))
+          }
+          // onSearchClick={setTerms}
+          placeholder="Explore the galaxy "
+        />
+        {console.log(character)}
 
-      {/* {char !== ""
-        ? character.map(() => {
-            return <Character {...props} />;
-          })
-        : ""} */}
+        {character.map((person) => {
+          console.log("Hello", person);
+          return <Character key={person.id} person={person} />;
+        })}
+      </div>
     </>
   );
 };
