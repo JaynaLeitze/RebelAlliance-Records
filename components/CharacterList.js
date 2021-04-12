@@ -12,9 +12,6 @@ export const CharacterList = (props) => {
     setTerms,
     getCharacters,
   } = useContext(SwapiContext);
-  const [filtered, setFiltered] = useState([]);
-
-  useEffect;
 
   return (
     <>
@@ -22,7 +19,7 @@ export const CharacterList = (props) => {
         <SearchField
           type="text"
           onEnter={(e) =>
-            getCharacters(e).then((char) => setCharacter(char.result))
+            getCharacters(e).then((char) => setCharacter(char.results))
           }
           // onSearchClick={setTerms}
           placeholder="Explore the galaxy "

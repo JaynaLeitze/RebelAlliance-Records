@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export const Character = ({ person }) => (
-  <div>
-    <h3>Name: {person.properties.name} </h3>
-    <p> Height: {person.properties.height} </p>
-    <p> Mass: {person.properties.mass} </p>
-    <p> Hair Color: {person.properties.hair_color}</p>
-    <p> Birth Year: {person.properties.birth_year}</p>
-    <p> Species: {person.properties.species} </p>
-  </div>
-);
+export const Character = ({ person }) => {
+  const [film, setFilm] = useState([]);
+
+  const getFilm = (data) => {
+    return person.films.map((url) =>
+      fetch(url)
+        .then((res) => res.json)
+        .then(setFilm(data))
+    );
+  };
+
+  useEffect(() => {
+    getFilm();
+  }, []);
+
+  console.log(film);
+  return (
+    <div>
+      <h3>Name: {person.name} </h3>
+      <p> Homeworld: {person.homeworld}</p>
+      <p> Height: {person.height} </p>
+      <p> Mass: {person.mass} </p>
+      <p> Hair Color: {person.hair_color}</p>
+      <p> Birth Year: {person.birth_year}</p>
+      <p> Species: {person.species} </p>
+      <p> Films: </p>
+    </div>
+  );
+};
