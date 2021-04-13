@@ -15,6 +15,7 @@ export const Character = ({ person }) => {
 
   const films = person.films;
   const planet = person.homeworld;
+  const ships = person.starships;
 
   useEffect(() => {
     async function fetchFilms() {
@@ -28,8 +29,14 @@ export const Character = ({ person }) => {
         .then((r) => r.json())
         .then((p) => setHomeworld(p));
     }
+    async function fetchStarships() {
+      const data = await Promise.all(
+        ships.map((url) => fetch(url).then((r) => r.json()))
+      ).then((a) => setStarships(a));
+    }
     fetchFilms();
     fetchPlanet();
+    fetchStarships();
   }, []);
 
   return (
@@ -52,6 +59,10 @@ export const Character = ({ person }) => {
             <p> Release Date: {f.release_date}</p>
           </div>
         );
+      })}
+      <h4> Starships: </h4>
+      {starships.map((s) => {
+        return <p> {s.name} </p>;
       })}
     </div>
   );
