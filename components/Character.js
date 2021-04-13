@@ -4,18 +4,12 @@ export const Character = ({ person }) => {
   const [film, setFilm] = useState([]);
   const [homeworld, setHomeworld] = useState([]);
   const [starships, setStarships] = useState([]);
-
-  //   const getFilm = () => {
-  //     return person.films.map((url) =>
-  //       fetch(url)
-  //         .then((res) => res.json)
-  //         .then(setFilm(film))
-  //     );
-  //   };
+  const [vehicles, setVehicles] = useState([]);
 
   const films = person.films;
   const planet = person.homeworld;
   const ships = person.starships;
+  const speeders = person.vehicles;
 
   useEffect(() => {
     async function fetchFilms() {
@@ -34,9 +28,15 @@ export const Character = ({ person }) => {
         ships.map((url) => fetch(url).then((r) => r.json()))
       ).then((a) => setStarships(a));
     }
+    async function fetchVehicles() {
+      const data = await Promise.all(
+        speeders.map((url) => fetch(url).then((r) => r.json()))
+      ).then((v) => setVehicles(v));
+    }
     fetchFilms();
     fetchPlanet();
     fetchStarships();
+    fetchVehicles();
   }, []);
 
   return (
@@ -62,6 +62,10 @@ export const Character = ({ person }) => {
       })}
       <h4> Starships: </h4>
       {starships.map((s) => {
+        return <p> {s.name} </p>;
+      })}
+      <h4> Vehicles: </h4>
+      {vehicles.map((s) => {
         return <p> {s.name} </p>;
       })}
     </div>
