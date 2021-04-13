@@ -9,7 +9,9 @@ export const Character = ({ person }) => {
   const [homeworld, setHomeworld] = useState([]);
   const [starships, setStarships] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [filmModal, setFilmModal] = useState(false);
+  const [starshipModal, setStarshipModal] = useState(false);
+  const [vehicleModal, setVehicleModal] = useState(false);
 
   const films = person.films;
   const planet = person.homeworld;
@@ -53,35 +55,46 @@ export const Character = ({ person }) => {
       <p> Hair Color: {person.hair_color}</p>
       <p> Birth Year: {person.birth_year}</p>
       <p> Species: {person.species} </p>
-
-      <h3> Films:</h3>
-      {film.map((f) => {
-        return (
-          <div>
-            <button onClick={() => setShowModal(true)}>{f.title}</button>
-            <Modal onClose={() => setShowModal(false)} show={showModal}>
-              <Film key={f.id} f={f} />
-            </Modal>
-          </div>
-        );
-      })}
-      <h4> Starships: </h4>
-      {starships.map((s) => {
-        return (
-          <div>
-            <a onClick={() => setShowModal(true)}>{s.name}</a>
-            <Modal onClose={() => setShowModal(false)} show={showModal}>
-              <Starship key={s.id} s={s} />
-            </Modal>
-          </div>
-        );
-      })}
+      <div>
+        <h2>
+          <a onClick={() => setFilmModal(true)}>Films</a>
+        </h2>
+        <Modal onClose={() => setFilmModal(false)} show={filmModal}>
+          {film.map((f) => {
+            return (
+              <div>
+                <Film key={f.id} f={f} />
+              </div>
+            );
+          })}
+        </Modal>
+      </div>
+      {person.starship !== null ? (
+        <div>
+          <h4> Starships: </h4>
+          {starships.map((s) => {
+            return (
+              <div>
+                <a onClick={() => setStarshipModal(true)}>{s.name}</a>
+                <Modal
+                  onClose={() => setStarshipModal(false)}
+                  show={starshipModal}
+                >
+                  <Starship key={s.id} s={s} />
+                </Modal>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        ""
+      )}
       <h4> Vehicles: </h4>
       {vehicles.map((v) => {
         return (
           <div>
-            <a onClick={() => setShowModal(true)}>{v.name}</a>
-            <Modal onClose={() => setShowModal(false)} show={showModal}>
+            <a onClick={() => setVehicleModal(true)}>{v.name}</a>
+            <Modal onClose={() => setVehicleModal(false)} show={vehicleModal}>
               <Vehicle key={v.id} v={v} />
             </Modal>
           </div>
