@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Film } from "./Film";
+import { Starship } from "./Starship";
+import { Vehicle } from "./Vehicle";
 
 export const Character = ({ person }) => {
   const [film, setFilm] = useState([]);
@@ -56,11 +58,11 @@ export const Character = ({ person }) => {
       })}
       <h4> Starships: </h4>
       {starships.map((s) => {
-        return <p> {s.name} </p>;
+        return <Starship key={s.id} s={s} />;
       })}
       <h4> Vehicles: </h4>
-      {vehicles.map((s) => {
-        return <p> {s.name} </p>;
+      {vehicles.map((v) => {
+        return <Vehicle key={v.id} v={v} />;
       })}
     </div>
   );
