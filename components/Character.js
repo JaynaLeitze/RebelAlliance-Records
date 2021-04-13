@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Film } from "./Film";
 import { Starship } from "./Starship";
 import { Vehicle } from "./Vehicle";
+import { Modal } from "./Modal";
 
 export const Character = ({ person }) => {
   const [film, setFilm] = useState([]);
   const [homeworld, setHomeworld] = useState([]);
   const [starships, setStarships] = useState([]);
   const [vehicles, setVehicles] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const films = person.films;
   const planet = person.homeworld;
@@ -54,15 +56,36 @@ export const Character = ({ person }) => {
 
       <h3> Films:</h3>
       {film.map((f) => {
-        return <Film key={f.id} f={f} />;
+        return (
+          <div>
+            <button onClick={() => setShowModal(true)}>{f.title}</button>
+            <Modal onClose={() => setShowModal(false)} show={showModal}>
+              <Film key={f.id} f={f} />
+            </Modal>
+          </div>
+        );
       })}
       <h4> Starships: </h4>
       {starships.map((s) => {
-        return <Starship key={s.id} s={s} />;
+        return (
+          <div>
+            <a onClick={() => setShowModal(true)}>{s.name}</a>
+            <Modal onClose={() => setShowModal(false)} show={showModal}>
+              <Starship key={s.id} s={s} />
+            </Modal>
+          </div>
+        );
       })}
       <h4> Vehicles: </h4>
       {vehicles.map((v) => {
-        return <Vehicle key={v.id} v={v} />;
+        return (
+          <div>
+            <a onClick={() => setShowModal(true)}>{v.name}</a>
+            <Modal onClose={() => setShowModal(false)} show={showModal}>
+              <Vehicle key={v.id} v={v} />
+            </Modal>
+          </div>
+        );
       })}
     </div>
   );
