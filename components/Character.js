@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Film } from "./Film";
 
 export const Character = ({ person }) => {
   const [film, setFilm] = useState([]);
@@ -51,14 +52,7 @@ export const Character = ({ person }) => {
 
       <h3> Films:</h3>
       {film.map((f) => {
-        return (
-          <div>
-            <p> Title:{f.title}</p>
-            <p>Episode:{f.episode_id}</p>
-            <p> Director: {f.director}</p>
-            <p> Release Date: {f.release_date}</p>
-          </div>
-        );
+        return <Film key={f.id} f={f} />;
       })}
       <h4> Starships: </h4>
       {starships.map((s) => {
