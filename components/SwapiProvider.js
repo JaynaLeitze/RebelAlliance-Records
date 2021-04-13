@@ -8,9 +8,9 @@ export const SwapiProvider = (props) => {
 
   const getCharacters = (char) => {
     console.log(char);
-    return fetch(
-      `https://www.swapi.tech/api/people/?name=${char}`
-    ).then((res) => res.json());
+    return fetch(`https://swapi.dev/api/people/?search=${char}`).then((res) =>
+      res.json()
+    );
   };
 
   // const getFilm = (filmURL) => {
