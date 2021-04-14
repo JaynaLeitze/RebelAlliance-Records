@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Film } from "./Film";
 import { Starship } from "./Starship";
 import { Vehicle } from "./Vehicle";
 import { Modal } from "./Modal";
+import { SwapiContext } from "./SwapiProvider";
 
 export const Character = ({ person }) => {
+  const { character } = useContext(SwapiContext);
   const [film, setFilm] = useState([]);
   const [homeworld, setHomeworld] = useState([]);
   const [starships, setStarships] = useState([]);
@@ -44,7 +46,7 @@ export const Character = ({ person }) => {
     fetchPlanet();
     fetchStarships();
     fetchVehicles();
-  }, []);
+  }, [character]);
 
   return (
     <div>
@@ -71,7 +73,7 @@ export const Character = ({ person }) => {
       </div>
       {person.starship !== null ? (
         <div>
-          <h4> Starships: </h4>
+          <h3> Starships: </h3>
           {starships.map((s) => {
             return (
               <div>
@@ -89,7 +91,7 @@ export const Character = ({ person }) => {
       ) : (
         ""
       )}
-      <h4> Vehicles: </h4>
+      <h3> Vehicles </h3>
       {vehicles.map((v) => {
         return (
           <div>
