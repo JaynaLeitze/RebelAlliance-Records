@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "../styles/Home.module.css";
 
 export const Film = ({ f }) => {
   return (
-    <div>
+    <div className={styles.card}>
       <p> Title:{f.title}</p>
       <p>Episode:{f.episode_id}</p>
       <p> Director: {f.director}</p>

@@ -4,6 +4,7 @@ import { Starship } from "./Starship";
 import { Vehicle } from "./Vehicle";
 import { Modal } from "./Modal";
 import { SwapiContext } from "./SwapiProvider";
+import styles from "../styles/Films.module.css";
 
 export const Character = ({ person }) => {
   const { character } = useContext(SwapiContext);
@@ -57,7 +58,7 @@ export const Character = ({ person }) => {
 
   return (
     <div>
-      <h3>Name: {person.name} </h3>
+      <h1> {person.name} </h1>
       <p> Homeworld: {homeworld.name}</p>
       <p> Height: {person.height} </p>
       <p> Mass: {person.mass} </p>
@@ -68,13 +69,13 @@ export const Character = ({ person }) => {
         <h2>
           <a onClick={() => setFilmModal(true)}>Films</a>
         </h2>
-        <Modal onClose={() => setFilmModal(false)} show={filmModal}>
+        <Modal
+          onClose={() => setFilmModal(false)}
+          show={filmModal}
+          className={styles.grid}
+        >
           {film.map((f) => {
-            return (
-              <div>
-                <Film key={f.id} f={f} />
-              </div>
-            );
+            return <Film key={f.id} f={f} />;
           })}
         </Modal>
       </div>

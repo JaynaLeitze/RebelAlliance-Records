@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "../styles/Home.module.css";
 
 export const Starship = ({ s }) => {
   return (
-    <div>
+    <div className={styles.card}>
       <h4>{s.name}</h4>
       <p>Model: {s.model} </p>
       <p>Manufacturer: {s.manufacturer}</p>
