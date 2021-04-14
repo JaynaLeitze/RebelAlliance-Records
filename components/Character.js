@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Film } from "./Film";
 import { Starship } from "./Starship";
 import { Vehicle } from "./Vehicle";
+import { Modal } from "./Modal";
+import { SwapiContext } from "./SwapiProvider";
 
 export const Character = ({ person }) => {
+  const { character } = useContext(SwapiContext);
   const [film, setFilm] = useState([]);
   const [homeworld, setHomeworld] = useState([]);
+  const [species, setSpecies] = useState([]);
   const [starships, setStarships] = useState([]);
   const [vehicles, setVehicles] = useState([]);
+  const [filmModal, setFilmModal] = useState(false);
+  const [starshipModal, setStarshipModal] = useState(false);
+  const [vehicleModal, setVehicleModal] = useState(false);
 
   const films = person.films;
   const planet = person.homeworld;
@@ -26,6 +33,11 @@ export const Character = ({ person }) => {
         .then((r) => r.json())
         .then((p) => setHomeworld(p));
     }
+    async function fetchSpecies() {
+      const data = await fetch(planet)
+        .then((r) => r.json())
+        .then((s) => setSpecies(s));
+    }
     async function fetchStarships() {
       const data = await Promise.all(
         ships.map((url) => fetch(url).then((r) => r.json()))
@@ -38,9 +50,10 @@ export const Character = ({ person }) => {
     }
     fetchFilms();
     fetchPlanet();
+    fetchSpecies();
     fetchStarships();
     fetchVehicles();
-  }, []);
+  }, [character]);
 
   return (
     <div>
@@ -51,19 +64,56 @@ export const Character = ({ person }) => {
       <p> Hair Color: {person.hair_color}</p>
       <p> Birth Year: {person.birth_year}</p>
       <p> Species: {person.species} </p>
-
-      <h3> Films:</h3>
-      {film.map((f) => {
-        return <Film key={f.id} f={f} />;
-      })}
-      <h4> Starships: </h4>
-      {starships.map((s) => {
-        return <Starship key={s.id} s={s} />;
-      })}
-      <h4> Vehicles: </h4>
-      {vehicles.map((v) => {
-        return <Vehicle key={v.id} v={v} />;
-      })}
+      <div>
+        <h2>
+          <a onClick={() => setFilmModal(true)}>Films</a>
+        </h2>
+        <Modal onClose={() => setFilmModal(false)} show={filmModal}>
+          {film.map((f) => {
+            return (
+              <div>
+                <Film key={f.id} f={f} />
+              </div>
+            );
+          })}
+        </Modal>
+      </div>
+      {person.starships !== null ? (
+        <div>
+          <h2>
+            <a onClick={() => setStarshipModal(true)}>Starships</a>
+          </h2>
+          <Modal onClose={() => setStarshipModal(false)} show={starshipModal}>
+            {starships.map((s) => {
+              return (
+                <div>
+                  <Starship key={s.id} s={s} />
+                </div>
+              );
+            })}
+          </Modal>
+        </div>
+      ) : (
+        ""
+      )}
+      {person.vehicles !== null ? (
+        <div>
+          <h2>
+            <a onClick={() => setVehicleModal(true)}>Vehicles</a>
+          </h2>
+          <Modal onClose={() => setVehicleModal(false)} show={vehicleModal}>
+            {vehicles.map((v) => {
+              return (
+                <div>
+                  <Vehicle key={v.id} v={v} />
+                </div>
+              );
+            })}
+          </Modal>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
