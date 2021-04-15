@@ -8,7 +8,9 @@ In a galaxy far, far away, and after years of unrest thanks to the Empire, the R
 
 The primary functionality of this application allows users to search for information on characters from the Star Wars fandom using the Star Wars API from swapi.dev.
 
-## Technologies Used
+### ERD
+
+![Entity Relationship Diagram] (RA-ERD.png)
 
 ### Technologies Used
 
@@ -33,7 +35,3 @@ cd RebelAlliance-Records
 npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-### ERD
-
-! [Entity Relationship Diagram] (RA-ERD.png)
