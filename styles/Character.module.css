@@ -1,1 +1,27 @@
+.grid_container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 100px 20px 300px;
+  justify-content: center;
+  align-content: center;
+  column-gap: 30px;
+}
+.char {
+  grid-column: 2;
+  justify-content: center;
+  grid-row: 1;
+}
 
+.char_info {
+  grid-row: 3;
+  justify-content: center;
+}
+
+.info {
+  grid-column: 3;
+  grid-row: 3;
+  justify-content: center;
+}
+.characterSearch {
+  padding: 15px;
+}
