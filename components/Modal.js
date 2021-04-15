@@ -47,10 +47,11 @@ const StyledModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   font-size: 25px;
+  color: white;
 `;
 
 const StyledModal = styled.div`
-  background: white;
+  background: black;
   width: 800px;
   max-height: 700px;
   border-radius: 15px;

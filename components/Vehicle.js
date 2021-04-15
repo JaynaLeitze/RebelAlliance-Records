@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 export const Vehicle = ({ v }) => {
   return (
     <div className={styles.card}>
-      <h4>{v.name}</h4>
+      <h3>{v.name}</h3>
       <p>Model: {v.model}</p>
       <p>Manufacturer: {v.manufacturer}</p>
       <p>Class: {v.vehicle_class}</p>
