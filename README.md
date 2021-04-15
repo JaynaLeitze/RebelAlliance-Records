@@ -10,7 +10,7 @@ The primary functionality of this application allows users to search for informa
 
 ### ERD
 
-![Entity Relationship Diagram] (RA-ERD.png)
+![Entity Relationship Diagram](RA-ERD.png)
 
 ### Technologies Used
 
