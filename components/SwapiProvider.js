@@ -4,9 +4,9 @@ export const SwapiContext = React.createContext();
 
 export const SwapiProvider = (props) => {
   const [character, setCharacter] = useState([]);
+  const [race, setRace] = useState([]);
 
   const getCharacters = (char) => {
-    console.log(char);
     return fetch(`https://swapi.dev/api/people/?search=${char}`).then((res) =>
       res.json()
     );
@@ -18,6 +18,8 @@ export const SwapiProvider = (props) => {
         character,
         setCharacter,
         getCharacters,
+        race,
+        setRace,
       }}
     >
       {props.children}
