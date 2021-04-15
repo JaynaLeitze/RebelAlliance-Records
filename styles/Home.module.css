@@ -5,6 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: url("pexels-francesco-ungaro-998641.jpg");
+  background-size: contain;
 }
 
 .main {
@@ -49,7 +51,8 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 5rem;
+  color: #ffe300;
 }
 
 .title,
@@ -75,9 +78,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
   max-width: 800px;
-  margin-top: 3rem;
+  max-height: 700px;
+  margin-top: 0.5rem;
 }
 
 .card {
@@ -85,18 +90,19 @@
   flex-basis: 45%;
   padding: 1.5rem;
   text-align: left;
-  color: inherit;
+  color: white;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 400px;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #ffe300;
+  border-color: #ffe300;
 }
 
 .card h3 {

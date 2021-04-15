@@ -10,7 +10,7 @@ export default function Home(props) {
       <Head>
         <title>Rebel Alliance Database</title>
       </Head>
-      <h1>Rebel Alliance Records</h1>
+      <h1 className={styles.title}>Rebel Alliance Records</h1>
       <CharacterList {...props} />
     </div>
   );

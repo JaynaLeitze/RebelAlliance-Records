@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: white;
 }
 
 a {
@@ -17,5 +18,14 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: blue;
+  color: #ffe300;
+}
+
+p {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+h3 {
+  color: #ffe300;
 }

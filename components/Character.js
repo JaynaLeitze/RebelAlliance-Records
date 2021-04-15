@@ -4,6 +4,7 @@ import { Starship } from "./Starship";
 import { Vehicle } from "./Vehicle";
 import { Modal } from "./Modal";
 import { SwapiContext } from "./SwapiProvider";
+import styles from "../styles/Character.module.css";
 
 export const Character = ({ person }) => {
   const { character } = useContext(SwapiContext);
@@ -20,6 +21,7 @@ export const Character = ({ person }) => {
   const planet = person.homeworld;
   const ships = person.starships;
   const speeders = person.vehicles;
+  const creature = person.species;
 
   useEffect(() => {
     async function fetchFilms() {
@@ -34,7 +36,7 @@ export const Character = ({ person }) => {
         .then((p) => setHomeworld(p));
     }
     async function fetchSpecies() {
-      const data = await fetch(planet)
+      const data = await fetch(creature)
         .then((r) => r.json())
         .then((s) => setSpecies(s));
     }
@@ -56,64 +58,75 @@ export const Character = ({ person }) => {
   }, [character]);
 
   return (
-    <div>
-      <h3>Name: {person.name} </h3>
-      <p> Homeworld: {homeworld.name}</p>
-      <p> Height: {person.height} </p>
-      <p> Mass: {person.mass} </p>
-      <p> Hair Color: {person.hair_color}</p>
-      <p> Birth Year: {person.birth_year}</p>
-      <p> Species: {person.species} </p>
-      <div>
+    <div className={styles.grid_container}>
+      <h1 className={styles.char}> {person.name} </h1>
+      <div className={styles.char_info}>
+        <p> Homeworld: {homeworld.name}</p>
+        <p> Height: {person.height} </p>
+        <p> Mass: {person.mass} </p>
+        <p> Hair Color: {person.hair_color}</p>
+        <p> Birth Year: {person.birth_year}</p>
+        {person.species !== null ? (
+          <p> Species: {species.name} </p>
+        ) : (
+          <p>Probably Humanoid</p>
+        )}
+      </div>
+      <div className={styles.info}>
         <h2>
           <a onClick={() => setFilmModal(true)}>Films</a>
         </h2>
-        <Modal onClose={() => setFilmModal(false)} show={filmModal}>
+        <Modal
+          onClose={() => setFilmModal(false)}
+          show={filmModal}
+          className={styles.grid}
+        >
           {film.map((f) => {
-            return (
-              <div>
-                <Film key={f.id} f={f} />
-              </div>
-            );
+            return <Film key={f.id} f={f} />;
           })}
         </Modal>
-      </div>
-      {person.starships !== null ? (
-        <div>
-          <h2>
-            <a onClick={() => setStarshipModal(true)}>Starships</a>
-          </h2>
+
+        {person.starships !== null ? (
+          <div>
+            <h2>
+              <a onClick={() => setStarshipModal(true)}>Starships</a>
+            </h2>
+            <Modal onClose={() => setStarshipModal(false)} show={starshipModal}>
+              {starships.map((s) => {
+                return (
+                  <div>
+                    <Starship key={s.id} s={s} />
+                  </div>
+                );
+              })}
+            </Modal>
+          </div>
+        ) : (
           <Modal onClose={() => setStarshipModal(false)} show={starshipModal}>
-            {starships.map((s) => {
-              return (
-                <div>
-                  <Starship key={s.id} s={s} />
-                </div>
-              );
-            })}
+            <div>
+              <h3>These are not the droids you're looking for.</h3>
+            </div>
           </Modal>
-        </div>
-      ) : (
-        ""
-      )}
-      {person.vehicles !== null ? (
-        <div>
-          <h2>
-            <a onClick={() => setVehicleModal(true)}>Vehicles</a>
-          </h2>
-          <Modal onClose={() => setVehicleModal(false)} show={vehicleModal}>
-            {vehicles.map((v) => {
-              return (
-                <div>
-                  <Vehicle key={v.id} v={v} />
-                </div>
-              );
-            })}
-          </Modal>
-        </div>
-      ) : (
-        ""
-      )}
+        )}
+        {person.vehicles !== null ? (
+          <div>
+            <h2>
+              <a onClick={() => setVehicleModal(true)}>Vehicles</a>
+            </h2>
+            <Modal onClose={() => setVehicleModal(false)} show={vehicleModal}>
+              {vehicles.map((v) => {
+                return (
+                  <div>
+                    <Vehicle key={v.id} v={v} />
+                  </div>
+                );
+              })}
+            </Modal>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

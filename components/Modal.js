@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import styles from "../styles/Home.module.css";
 
 export const Modal = ({ show, onClose, children, title }) => {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -23,7 +24,7 @@ export const Modal = ({ show, onClose, children, title }) => {
           </a>
         </StyledModalHeader>
         {title && <StyledModalTitle>{title}</StyledModalTitle>}
-        <StyledModalBody>{children}</StyledModalBody>
+        <StyledModalBody className={styles.grid}>{children}</StyledModalBody>
       </StyledModal>
     </StyledModalOverlay>
   ) : null;
@@ -39,19 +40,20 @@ export const Modal = ({ show, onClose, children, title }) => {
 };
 
 const StyledModalBody = styled.div`
-  padding-top: 10px;
+  padding-top: 3px;
 `;
 
 const StyledModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   font-size: 25px;
+  color: white;
 `;
 
 const StyledModal = styled.div`
-  background: white;
-  width: 500px;
-  height: 600px;
+  background: black;
+  width: 800px;
+  max-height: 700px;
   border-radius: 15px;
   padding: 15px;
 `;
