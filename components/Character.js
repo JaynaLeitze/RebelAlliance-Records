@@ -107,7 +107,7 @@ export const Character = ({ person }) => {
             </div>
           </Modal>
         )}
-        {person.vehicles !== null ? (
+        {person.vehicles.length >= 1 ? (
           <div>
             <h2>
               <a onClick={() => setVehicleModal(true)}>Vehicles</a>

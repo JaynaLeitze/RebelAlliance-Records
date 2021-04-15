@@ -3,6 +3,7 @@ import { SwapiContext } from "./SwapiProvider";
 import { Character } from "./Character";
 import SearchField from "react-search-field";
 import styles from "../styles/Character.module.css";
+
 export const CharacterList = (props) => {
   const { character, setCharacter, getCharacters } = useContext(SwapiContext);
 
@@ -20,9 +21,9 @@ export const CharacterList = (props) => {
           placeholder="Explore the galaxy "
         />
       </div>
+
       <div>
         {character.map((person) => {
-          console.log("Hello", person);
           return <Character key={person.id} person={person} />;
         })}
       </div>

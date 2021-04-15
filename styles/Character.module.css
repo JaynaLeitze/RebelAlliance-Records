@@ -1,14 +1,15 @@
 .grid_container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 300px 200px 300px;
   grid-template-rows: 100px 20px 300px;
   justify-content: center;
   align-content: center;
-  column-gap: 30px;
 }
 .char {
-  grid-column: 2;
+  grid-column-start: 2;
+  grid-column-end: 4;
   justify-content: center;
+  align-content: center;
   grid-row: 1;
   color: #ffe300;
 }
@@ -16,6 +17,7 @@
 .char_info {
   grid-row: 3;
   justify-content: center;
+  align-content: center;
 }
 
 .info {

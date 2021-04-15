@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import React from "react";
-import { SwapiProvider, SwapiContext } from "../components/SwapiProvider";
+import { SwapiProvider } from "../components/SwapiProvider";
 
 function MyApp({ Component, pageProps }) {
   return (
