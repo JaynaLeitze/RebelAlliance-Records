@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
-
+//display film data within film modal defined on character page
 export const Film = ({ f }) => {
   return (
     <div className={styles.card}>

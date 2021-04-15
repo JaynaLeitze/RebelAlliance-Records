@@ -4,6 +4,7 @@ import { Character } from "./Character";
 import SearchField from "react-search-field";
 import styles from "../styles/Character.module.css";
 
+//Searches swapi for characters, sets state of character and then maps through character array
 export const CharacterList = (props) => {
   const { character, setCharacter, getCharacters } = useContext(SwapiContext);
 

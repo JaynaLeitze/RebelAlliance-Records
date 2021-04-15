@@ -7,6 +7,7 @@ import { SwapiContext } from "./SwapiProvider";
 import styles from "../styles/Character.module.css";
 
 export const Character = ({ person }) => {
+  //bring in state variables from swapicontext, define new state variables to be used
   const { character, race, setRace } = useContext(SwapiContext);
   const [film, setFilm] = useState([]);
   const [homeworld, setHomeworld] = useState([]);
@@ -16,19 +17,21 @@ export const Character = ({ person }) => {
   const [starshipModal, setStarshipModal] = useState(false);
   const [vehicleModal, setVehicleModal] = useState(false);
 
+  //This data all comes is as urls from swapi, defined them as variables to use in useEffect
   const films = person.films;
   const planet = person.homeworld;
   const ships = person.starships;
   const speeders = person.vehicles;
   const creature = person.species;
 
+  // This useEffect uses async functions to get data (and convert to json) from the urls that
+  // came in with the character data, so that we can access the corresponding data within the component
   useEffect(() => {
     async function fetchFilms() {
       const data = await Promise.all(
         films.map((url) => fetch(url).then((r) => r.json()))
       ).then((a) => setFilm(a));
     }
-
     async function fetchPlanet() {
       const data = await fetch(planet)
         .then((r) => r.json())
@@ -54,9 +57,11 @@ export const Character = ({ person }) => {
     fetchSpecies();
     fetchStarships();
     fetchVehicles();
+    //watch the state of the character so that all data is updated when a new search is performed
   }, [character]);
 
   return (
+    //   display character data
     <div className={styles.grid_container}>
       <h1 className={styles.char}> {person.name} </h1>
       <div className={styles.char_info}>
@@ -65,6 +70,7 @@ export const Character = ({ person }) => {
         <p> Mass: {person.mass} </p>
         <p> Hair Color: {person.hair_color}</p>
         <p> Birth Year: {person.birth_year}</p>
+        {/* "species" comes in as empty array for human characters */}
         {person.species.length >= 1 ? (
           <p> Species: {race.name} </p>
         ) : (
@@ -101,11 +107,7 @@ export const Character = ({ person }) => {
             </Modal>
           </div>
         ) : (
-          <Modal onClose={() => setStarshipModal(false)} show={starshipModal}>
-            <div>
-              <h3>These are not the droids you're looking for.</h3>
-            </div>
-          </Modal>
+          ""
         )}
         {person.vehicles.length >= 1 ? (
           <div>
