@@ -7,10 +7,9 @@ import { SwapiContext } from "./SwapiProvider";
 import styles from "../styles/Character.module.css";
 
 export const Character = ({ person }) => {
-  const { character } = useContext(SwapiContext);
+  const { character, race, setRace } = useContext(SwapiContext);
   const [film, setFilm] = useState([]);
   const [homeworld, setHomeworld] = useState([]);
-  const [species, setSpecies] = useState([]);
   const [starships, setStarships] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   const [filmModal, setFilmModal] = useState(false);
@@ -38,7 +37,7 @@ export const Character = ({ person }) => {
     async function fetchSpecies() {
       const data = await fetch(creature)
         .then((r) => r.json())
-        .then((s) => setSpecies(s));
+        .then((s) => setRace(s));
     }
     async function fetchStarships() {
       const data = await Promise.all(
@@ -66,10 +65,10 @@ export const Character = ({ person }) => {
         <p> Mass: {person.mass} </p>
         <p> Hair Color: {person.hair_color}</p>
         <p> Birth Year: {person.birth_year}</p>
-        {person.species !== null ? (
-          <p> Species: {species.name} </p>
+        {person.species.length >= 1 ? (
+          <p> Species: {race.name} </p>
         ) : (
-          <p>Probably Humanoid</p>
+          <p>Species: Probably Humanoid</p>
         )}
       </div>
       <div className={styles.info}>
@@ -86,7 +85,7 @@ export const Character = ({ person }) => {
           })}
         </Modal>
 
-        {person.starships !== null ? (
+        {person.starships.length >= 1 ? (
           <div>
             <h2>
               <a onClick={() => setStarshipModal(true)}>Starships</a>
