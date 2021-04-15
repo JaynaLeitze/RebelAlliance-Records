@@ -4,7 +4,6 @@ export const SwapiContext = React.createContext();
 
 export const SwapiProvider = (props) => {
   const [character, setCharacter] = useState([]);
-  const [searchTerms, setTerms] = useState("");
 
   const getCharacters = (char) => {
     console.log(char);
@@ -13,18 +12,11 @@ export const SwapiProvider = (props) => {
     );
   };
 
-  // const getFilm = (filmURL) => {
-  //   return fetch(`${filmURL}`)
-  //   .then((res) => res.json())
-  //   }
-
   return (
     <SwapiContext.Provider
       value={{
         character,
         setCharacter,
-        searchTerms,
-        setTerms,
         getCharacters,
       }}
     >

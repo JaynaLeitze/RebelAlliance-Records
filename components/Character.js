@@ -21,6 +21,7 @@ export const Character = ({ person }) => {
   const planet = person.homeworld;
   const ships = person.starships;
   const speeders = person.vehicles;
+  const creature = person.species;
 
   useEffect(() => {
     async function fetchFilms() {
@@ -35,7 +36,7 @@ export const Character = ({ person }) => {
         .then((p) => setHomeworld(p));
     }
     async function fetchSpecies() {
-      const data = await fetch(planet)
+      const data = await fetch(creature)
         .then((r) => r.json())
         .then((s) => setSpecies(s));
     }
@@ -65,7 +66,11 @@ export const Character = ({ person }) => {
         <p> Mass: {person.mass} </p>
         <p> Hair Color: {person.hair_color}</p>
         <p> Birth Year: {person.birth_year}</p>
-        <p> Species: {person.species} </p>
+        {person.species !== null ? (
+          <p> Species: {species.name} </p>
+        ) : (
+          <p>Probably Humanoid</p>
+        )}
       </div>
       <div className={styles.info}>
         <h2>
@@ -97,7 +102,11 @@ export const Character = ({ person }) => {
             </Modal>
           </div>
         ) : (
-          ""
+          <Modal onClose={() => setStarshipModal(false)} show={starshipModal}>
+            <div>
+              <h3>These are not the droids you're looking for.</h3>
+            </div>
+          </Modal>
         )}
         {person.vehicles !== null ? (
           <div>
