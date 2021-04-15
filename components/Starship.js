@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
-
+//display starship data within starship modal defined on character page
 export const Starship = ({ s }) => {
   return (
     <div className={styles.card}>
